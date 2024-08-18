@@ -1,50 +1,44 @@
-# Welcome to your Expo app 👋
+# Fakestore
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Fakestore is a sleek and simple React Native app built using [Expo](https://expo.dev) that brings an online shopping experience to life. This app fetches data from the Fake Store API and includes features like viewing product listings, adding items to a cart, and checking out—all within a user-friendly mobile experience.
 
-## Get started
+## Features
 
-1. Install dependencies
+- **Authentication Page**: Sign in to unlock a personalized shopping experience.
+- **Home Page**: View a dynamic list of products fetched from the Fake Store API.
+- **Product Detail Page**: Dive deeper into individual products with detailed views, including price, description, and images.
+- **Add to Cart**: Easily add products to your cart with a single tap.
+- **Cart Page**: View all items in your cart and proceed to checkout.
+- **Checkout Page**: Finalize your shopping experience by confirming your purchase.
+- **Bottom Navigation Bar**: Quickly navigate between Home, Cart, and other core sections of the app.
+
+## Get Started
+
+1. **Install dependencies**:
 
    ```bash
    npm install
    ```
 
-2. Start the app
+2. **Start the app**:
 
    ```bash
     npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+You can then open the app in:
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- A [development build](https://docs.expo.dev/develop/development-builds/introduction/)
+- An [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
+- An [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
+- Or scan the QR code with your physical device using the [Expo Go](https://expo.dev/go) app
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Pages Overview
 
-## Get a fresh project
+- **Authentication Page**: Simple login system to personalize the experience for each user.
+- **Home Page**: Displays a list of products, each with a thumbnail image, description, and price.
+- **Product Detail Page**: Shows detailed information about a product with an option to add it to the cart.
+- **Cart Page**: Lists all products added to the cart, allowing the user to review and modify items.
+- **Checkout Page**: A summary of the cart contents with a button to proceed with the purchase.
+- **Bottom Navigation Bar**: Persistent navigation bar at the bottom of the app for easy access to Home, Cart, and other key sections.
 
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
