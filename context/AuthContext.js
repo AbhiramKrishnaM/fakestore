@@ -8,14 +8,14 @@ import Auth from "../api/auth.js";
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [userToken, setUserToken] = useState(null);
 
   useEffect(() => {
     const loadUserData = async () => {
       try {
-        const storedUser = await AsyncStorage.getItem("user");
-        if (storedUser) {
-          setUser(JSON.parse(storedUser));
+        const storedtoken = await AsyncStorage.getItem("authtoken");
+        if (storedtoken) {
+          setUserToken(JSON.parse(storedtoken));
         }
       } catch (error) {
         console.error("Failed to load user data:", error);
@@ -24,23 +24,50 @@ export const AuthProvider = ({ children }) => {
     loadUserData();
   }, []);
 
-  const signIn = async (email, password) => {
-    const response = await Auth.login({ username: email, password });
+  const signIn = async (username, password) => {
+    const response = await Auth.login({ username, password });
 
-    if (response.success) {
-      setUser(response.data);
-      await AsyncStorage.setItem("user", JSON.stringify(response.data));
+    if (response?.data?.token) {
+      setUserToken(response.data.token);
+      await AsyncStorage.setItem(
+        "authtoken",
+        JSON.stringify(response.data.token)
+      );
     }
+
     return response;
   };
 
   const signOut = async () => {
-    setUser(null);
-    await AsyncStorage.removeItem("user");
+    setUserToken(null);
+    await AsyncStorage.removeItem("authtoken");
+  };
+
+  const createUser = async () => {
+    await Auth.register({
+      email: "John@gmail.com",
+      username: "johnd",
+      password: "m38rmF$",
+      name: {
+        firstname: "John",
+        lastname: "Doe",
+      },
+      address: {
+        city: "kilcoole",
+        street: "7835 new road",
+        number: 3,
+        zipcode: "12926-3874",
+        geolocation: {
+          lat: "-37.3159",
+          long: "81.1496",
+        },
+      },
+      phone: "1-570-236-7033",
+    });
   };
 
   return (
-    <AuthContext.Provider value={{ user, signIn, signOut }}>
+    <AuthContext.Provider value={{ userToken, signIn, signOut, createUser }}>
       {children}
     </AuthContext.Provider>
   );

@@ -3,15 +3,11 @@ import api from "./axios.config";
 class Auth {
   // login
   login(user) {
-    /**
-     * username: "mor_2314",
-     * password: "83r5^_"
-     */
     return api.post("/auth/login", user);
   }
 
   // register
-  register() {
+  register(user) {
     /**
      * {
         email:'John@gmail.com',
@@ -34,6 +30,7 @@ class Auth {
         phone:'1-570-236-7033'
         }
      */
+    return api.post("/users", user);
   }
 
   // logout

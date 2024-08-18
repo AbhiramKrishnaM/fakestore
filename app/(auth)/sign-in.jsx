@@ -11,7 +11,7 @@ const SignIn = () => {
   const { signIn } = useContext(AuthContext);
 
   const [form, setForm] = useState({
-    email: "",
+    username: "",
     password: "",
   });
 
@@ -20,13 +20,9 @@ const SignIn = () => {
   const submit = async () => {
     setSubmitting(true);
     try {
-      const response = await signIn(form.email, form.password);
-      if (response.success) {
-        console.log(response, "this is response");
-        router.push({ pathname: "/home" });
-      } else {
-        console.log(response, "this is response");
-      }
+      const response = await signIn(form.username, form.password);
+
+      router.push({ pathname: "/home" });
     } catch (error) {
       console.error("Failed to sign in:", error);
     } finally {
@@ -42,11 +38,10 @@ const SignIn = () => {
           <Text className="text-xl font-pAmsterdam">Log into Fakestore</Text>
 
           <FormField
-            title="Email"
-            value={form.email}
-            handleChangetext={(e) => setForm({ ...form, email: e })}
+            title="Username"
+            value={form.username}
+            handleChangetext={(e) => setForm({ ...form, username: e })}
             otherStyles="mt-4"
-            keyboardType="email-address"
           />
 
           <FormField
