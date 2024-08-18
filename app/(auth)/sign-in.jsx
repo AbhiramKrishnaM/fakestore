@@ -34,7 +34,6 @@ const SignIn = () => {
 
       router.push({ pathname: "/home" });
     } catch (error) {
-      console.error("Failed to sign in:", error);
       Alert.alert("Error", "Failed to sign in. Please check your credentials.");
     } finally {
       setSubmitting(false);

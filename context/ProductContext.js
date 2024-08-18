@@ -58,6 +58,7 @@ export const ProductProvider = ({ children }) => {
         addToCart,
         removeFromCart,
         isInCart,
+        setCart,
       }}
     >
       {children}

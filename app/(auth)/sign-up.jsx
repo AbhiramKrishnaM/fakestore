@@ -31,8 +31,7 @@ const SignUp = () => {
     setSubmitting(true);
 
     try {
-      const response = await createUser(username, email, password);
-      console.log(response.data, "this is response");
+      await createUser(username, email, password);
     } catch (error) {
       Alert.alert("Error", error.message);
     } finally {
