@@ -1,14 +1,34 @@
-import { View, Text, SafeAreaView, FlatList } from "react-native";
-import React, { useState } from "react";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  FlatList,
+  RefreshControl,
+} from "react-native";
+import React, { useContext, useEffect, useState } from "react";
 import SearchInput from "../components/SearchInput";
 import Trending from "../components/Trending";
 import EmptyState from "../components/EmptyState";
 
+import { ProductContext } from "../../context/ProductContext";
+
 const Home = () => {
-  const [products, setProducts] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
+
+  const { products, fetchProducts } = useContext(ProductContext);
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+
+    setRefreshing(false);
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView className="h-full">
       <FlatList
         data={products}
         keyExtractor={(item) => item.id}
@@ -34,6 +54,9 @@ const Home = () => {
           </View>
         )}
         ListEmptyComponent={() => <EmptyState title="No Products Found" />}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
       />
     </SafeAreaView>
   );

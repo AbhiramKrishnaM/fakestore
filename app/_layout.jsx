@@ -3,6 +3,7 @@ import { useFonts } from "expo-font";
 import { useEffect } from "react";
 
 import { AuthProvider } from "../context/AuthContext";
+import { ProductProvider } from "../context/ProductContext";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -18,12 +19,14 @@ const RootLayout = () => {
 
   return (
     <AuthProvider>
-      <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        {/* <Stack.Screen name="/search/[id]" options={{ headerShown: false }} /> */}
-      </Stack>
+      <ProductProvider>
+        <Stack>
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          {/* <Stack.Screen name="/search/[id]" options={{ headerShown: false }} /> */}
+        </Stack>
+      </ProductProvider>
     </AuthProvider>
   );
 };
