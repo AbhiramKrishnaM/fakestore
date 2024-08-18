@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { ProductContext } from "../../context/ProductContext";
+import { router } from "expo-router";
 
 const ProductDetail = () => {
   const { id } = useLocalSearchParams();
@@ -31,6 +32,10 @@ const ProductDetail = () => {
     } else {
       addToCart(product);
     }
+  };
+
+  const navigateToCart = () => {
+    router.push({ pathname: "/cart" });
   };
 
   return (
@@ -76,6 +81,15 @@ const ProductDetail = () => {
           >
             <Text className="text-white text-center font-pAmsterdam">
               {isInCart(product.id) ? "Remove from Cart" : "Add to Cart"}
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            className="mt-4 p-4 bg-black rounded-lg"
+            onPress={navigateToCart}
+          >
+            <Text className="text-white text-center font-pAmsterdam">
+              Go to Cart
             </Text>
           </TouchableOpacity>
         </View>
