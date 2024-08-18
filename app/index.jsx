@@ -18,16 +18,14 @@ export default function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-
-      console.log(isLoggedIn, "user logged in");
-
-      if (isLoggedIn) {
-        router.push({ pathname: "/home" });
-      }
     }, 2000);
 
     return () => clearTimeout(timer);
   }, []);
+
+  if (isLoggedIn) {
+    return <Redirect href="/home" />;
+  }
 
   return (
     <SafeAreaView className="flex-1 items-center justify-center bg-white">
