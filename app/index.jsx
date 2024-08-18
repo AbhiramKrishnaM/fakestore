@@ -3,9 +3,12 @@ import { Link, Redirect, router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Button from "./components/Button";
 import { isLoaded } from "expo-font";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+
+import { AuthContext } from "../context/AuthContext";
 
 export default function App() {
+  const { isLoggedIn } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(true);
 
   const handleAction = () => {
@@ -15,6 +18,12 @@ export default function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
+
+      console.log(isLoggedIn, "user logged in");
+
+      if (isLoggedIn) {
+        router.push({ pathname: "/home" });
+      }
     }, 2000);
 
     return () => clearTimeout(timer);

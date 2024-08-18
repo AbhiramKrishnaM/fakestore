@@ -9,26 +9,30 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [userToken, setUserToken] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useEffect(() => {
-    const loadUserData = async () => {
-      try {
-        const storedtoken = await AsyncStorage.getItem("authtoken");
-        if (storedtoken) {
-          setUserToken(JSON.parse(storedtoken));
-        }
-      } catch (error) {
-        console.error("Failed to load user data:", error);
+  const loadUserData = async () => {
+    try {
+      const storedtoken = await AsyncStorage.getItem("authtoken");
+
+      if (storedtoken) {
+        setUserToken(JSON.parse(storedtoken));
+
+        setIsLoggedIn(true);
       }
-    };
-    loadUserData();
-  }, []);
+    } catch (error) {
+      console.error("Failed to load user data:", error);
+    }
+  };
 
   const signIn = async (username, password) => {
     const response = await Auth.login({ username, password });
 
     if (response?.data?.token) {
       setUserToken(response.data.token);
+
+      setIsLoggedIn(true);
+
       await AsyncStorage.setItem(
         "authtoken",
         JSON.stringify(response.data.token)
@@ -40,6 +44,7 @@ export const AuthProvider = ({ children }) => {
 
   const signOut = async () => {
     setUserToken(null);
+    setIsLoggedIn(false);
     await AsyncStorage.removeItem("authtoken");
   };
 
@@ -66,8 +71,12 @@ export const AuthProvider = ({ children }) => {
     });
   };
 
+  useEffect(() => {
+    loadUserData();
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ userToken, signIn, signOut, createUser }}>
+    <AuthContext.Provider value={{ isLoggedIn, signIn, signOut, createUser }}>
       {children}
     </AuthContext.Provider>
   );

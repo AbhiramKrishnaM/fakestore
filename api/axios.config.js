@@ -15,15 +15,12 @@ const api = axios.create({
   },
 });
 
-// Axios request interceptor to add the token to the request headers
 api.interceptors.request.use(
   async (config) => {
     try {
-      // Get the token from AsyncStorage
       const token = await AsyncStorage.getItem("authtoken");
 
       if (token) {
-        // Attach the token to the Authorization header if it exists
         config.headers.Authorization = `Bearer ${JSON.parse(token)}`;
       }
     } catch (error) {
@@ -33,7 +30,6 @@ api.interceptors.request.use(
     return config;
   },
   (error) => {
-    // Handle the error
     return Promise.reject(error);
   }
 );
