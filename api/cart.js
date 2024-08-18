@@ -27,3 +27,5 @@ class Cart {
   // delete from cart
   deleteItem(id) {}
 }
+
+export default new Cart();

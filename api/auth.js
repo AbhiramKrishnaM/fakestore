@@ -2,11 +2,12 @@ import api from "./axios.config";
 
 class Auth {
   // login
-  login() {
+  login(user) {
     /**
      * username: "mor_2314",
      * password: "83r5^_"
      */
+    return api.post("/auth/login", user);
   }
 
   // register
@@ -38,3 +39,5 @@ class Auth {
   // logout
   logout() {}
 }
+
+export default new Auth();

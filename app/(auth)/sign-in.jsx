@@ -1,11 +1,15 @@
 import { View, Text, ScrollView } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import FormField from "../components/FormField";
 import Button from "../components/Button";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
+
+import { AuthContext } from "../../context/AuthContext";
 
 const SignIn = () => {
+  const { signIn } = useContext(AuthContext);
+
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -13,8 +17,21 @@ const SignIn = () => {
 
   const [submitting, setSubmitting] = useState(false);
 
-  const submit = () => {
+  const submit = async () => {
     setSubmitting(true);
+    try {
+      const response = await signIn(form.email, form.password);
+      if (response.success) {
+        console.log(response, "this is response");
+        router.push({ pathname: "/home" });
+      } else {
+        console.log(response, "this is response");
+      }
+    } catch (error) {
+      console.error("Failed to sign in:", error);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (

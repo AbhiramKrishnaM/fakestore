@@ -7,3 +7,5 @@ class Product {
   // get details of a single product
   getProduct(id) {}
 }
+
+export default new Product();
