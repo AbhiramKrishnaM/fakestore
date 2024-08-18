@@ -42,3 +42,15 @@ You can then open the app in:
 - **Checkout Page**: A summary of the cart contents with a button to proceed with the purchase.
 - **Bottom Navigation Bar**: Persistent navigation bar at the bottom of the app for easy access to Home, Cart, and other key sections.
 
+## References
+
+This application was built using the following resources:
+
+1. [Expo Documentation](https://docs.expo.dev/)
+2. [React Native Documentation](https://reactnative.dev/docs/getting-started)
+3. [NativeWind](https://www.nativewind.dev/)
+4. [React Native SafeArea](https://reactnative.dev/docs/safeareaview)
+5. [Video by JavaScript Mastery](https://www.youtube.com/watch?v=ZBCUegTZF7M)
+6. [React Native Testing Library](https://callstack.github.io/react-native-testing-library/)
+7. [Stack Overflow](https://stackoverflow.com/): For troubleshooting various issues.
+8. [ChatGPT](https://openai.com/chatgpt): Assisted in code troubleshooting and project guidance.
