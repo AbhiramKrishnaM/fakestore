@@ -4,6 +4,7 @@ import {
   SafeAreaView,
   FlatList,
   RefreshControl,
+  Alert,
 } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import SearchInput from "../components/SearchInput";
@@ -11,15 +12,16 @@ import Trending from "../components/Trending";
 import EmptyState from "../components/EmptyState";
 
 import { ProductContext } from "../../context/ProductContext";
+import ProductCard from "../components/ProductCard";
 
 const Home = () => {
   const [refreshing, setRefreshing] = useState(false);
 
-  const { products, fetchProducts } = useContext(ProductContext);
+  const { products, isLoading, fetchProducts } = useContext(ProductContext);
 
   const onRefresh = async () => {
     setRefreshing(true);
-
+    fetchProducts();
     setRefreshing(false);
   };
 
@@ -32,7 +34,7 @@ const Home = () => {
       <FlatList
         data={products}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <Text className="text-3xl">{item.id}</Text>}
+        renderItem={({ item }) => <ProductCard product={item} />}
         ListHeaderComponent={() => (
           <View className="my-6 px-4 space-y-6">
             <View className="justify-between items-start flex-row mb-4">

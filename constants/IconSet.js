@@ -7,6 +7,7 @@ import ClosedEye from "../assets/icons/closed-eye.png";
 import OpenEye from "../assets/icons/open-eye.png";
 import Search from "../assets/icons/search.png";
 import EmptyBox from "../assets/icons/empty-box.png";
+import MenuVertical from "../assets/icons/menu-vertical.png";
 
 export {
   Cart,
@@ -18,4 +19,5 @@ export {
   OpenEye,
   Search,
   EmptyBox,
+  MenuVertical,
 };
