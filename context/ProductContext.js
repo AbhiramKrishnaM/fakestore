@@ -9,8 +9,21 @@ export const ProductContext = createContext();
 export const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [trendingProducts, setTrendingProducts] = useState([]);
-
   const [isLoading, setIsLoading] = useState(false);
+
+  const [cart, setCart] = useState([]);
+
+  const addToCart = (product) => {
+    setCart((prevCart) => [...prevCart, product]);
+  };
+
+  const removeFromCart = (productId) => {
+    setCart((prevCart) => prevCart.filter((p) => p.id !== productId));
+  };
+
+  const isInCart = (productId) => {
+    return cart.some((p) => p.id === productId);
+  };
 
   const fetchProducts = async () => {
     setIsLoading(true);
@@ -33,7 +46,16 @@ export const ProductProvider = ({ children }) => {
 
   return (
     <ProductContext.Provider
-      value={{ products, isLoading, trendingProducts, fetchProducts }}
+      value={{
+        products,
+        isLoading,
+        trendingProducts,
+        cart,
+        fetchProducts,
+        addToCart,
+        removeFromCart,
+        isInCart,
+      }}
     >
       {children}
     </ProductContext.Provider>

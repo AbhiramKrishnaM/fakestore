@@ -15,7 +15,7 @@ import EmptyState from "../components/EmptyState";
 import { ProductContext } from "../../context/ProductContext";
 import ProductCard from "../components/ProductCard";
 
-const Product = () => {
+const ProductSearch = () => {
   const { query } = useLocalSearchParams();
   const { products } = useContext(ProductContext);
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -60,4 +60,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default ProductSearch;

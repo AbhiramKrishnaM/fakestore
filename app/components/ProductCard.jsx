@@ -1,9 +1,13 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
-
+import { router } from "expo-router";
 import { MenuVertical } from "../../constants/IconSet";
 
-const ProductCard = ({ product: { title, price, category, image } }) => {
+const ProductCard = ({ product: { id, title, price, category, image } }) => {
+  const handlePress = () => {
+    router.push(`/product/${id}`);
+  };
+
   return (
     <View className="flex-col items-center px-4 mb-14">
       <View className="flex-row gap-3 items-start">
@@ -39,6 +43,7 @@ const ProductCard = ({ product: { title, price, category, image } }) => {
       <TouchableOpacity
         className="w-full h-60 rounded-xl mt-3 relative justify-center items-center"
         activeOpacity={0.7}
+        onPress={handlePress}
       >
         <Image
           source={{ uri: image }}

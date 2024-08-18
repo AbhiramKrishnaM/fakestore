@@ -28,6 +28,7 @@ const RootLayout = () => {
             name="search/[query]"
             options={{ headerShown: false }}
           />
+          <Stack.Screen name="product/[id]" options={{ headerShown: false }} />
         </Stack>
       </ProductProvider>
     </AuthProvider>
