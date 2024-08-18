@@ -43,7 +43,7 @@ const Home = () => {
                 <Text className="font-pAmsterdam font-medium text-lg">
                   Welcome Back
                 </Text>
-                <Text className="font-pAmsterdam text-5xl">Smantha</Text>
+                <Text className="font-pAmsterdam text-5xl">Abhiram</Text>
               </View>
             </View>
 
