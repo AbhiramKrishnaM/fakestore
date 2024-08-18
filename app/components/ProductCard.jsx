@@ -36,7 +36,10 @@ const ProductCard = ({ product: { title, price, category, image } }) => {
         </View>
       </View>
 
-      <TouchableOpacity className="w-full h-60 rounded-xl mt-3 relative justify-center items-center">
+      <TouchableOpacity
+        className="w-full h-60 rounded-xl mt-3 relative justify-center items-center"
+        activeOpacity={0.7}
+      >
         <Image
           source={{ uri: image }}
           className="w-full h-full rounded-xl mt-3"

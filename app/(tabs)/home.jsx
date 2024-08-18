@@ -17,7 +17,8 @@ import ProductCard from "../components/ProductCard";
 const Home = () => {
   const [refreshing, setRefreshing] = useState(false);
 
-  const { products, isLoading, fetchProducts } = useContext(ProductContext);
+  const { products, trendingProducts, isLoading, fetchProducts } =
+    useContext(ProductContext);
 
   const onRefresh = async () => {
     setRefreshing(true);
@@ -49,9 +50,11 @@ const Home = () => {
             <SearchInput otherStyles="" placeholder="Search Products" />
 
             <View className="w-full flex-1 pt-4 pb-8">
-              <Text className="font-regular text-base">Latest Products</Text>
+              <Text className="font-regular text-2xl font-pAmsterdam">
+                Latest Products
+              </Text>
 
-              <Trending products={[{ id: 0 }, { id: 1 }, { id: 2 }] ?? []} />
+              <Trending products={trendingProducts} />
             </View>
           </View>
         )}
