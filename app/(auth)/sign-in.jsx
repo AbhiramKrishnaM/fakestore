@@ -20,7 +20,7 @@ const SignIn = () => {
   return (
     <SafeAreaView className="flex-1  bg-white">
       <ScrollView>
-        <View className="w-full min-h-full flex-col justify-center  px-8 ">
+        <View className="w-full mt-28  px-8 ">
           <Text className="text-5xl font-pAmsterdam">Fakestore!</Text>
           <Text className="text-xl font-pAmsterdam">Log into Fakestore</Text>
 
