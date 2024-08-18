@@ -14,7 +14,11 @@ const TabIcon = ({ icon, color, name, focused }) => {
         className={`${focused ? "w-8 h-8" : "w-6 h-6"}`}
       />
 
-      <Text className={`${focused ? `text-sm ` : `text-xs text-slate-500`}`}>
+      <Text
+        className={`${
+          focused ? `text-sm` : `text-xs text-slate-500`
+        } font-pAmsterdam`}
+      >
         {name}
       </Text>
     </View>
