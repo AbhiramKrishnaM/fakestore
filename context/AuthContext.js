@@ -10,13 +10,19 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [userToken, setUserToken] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isUserDataLoading, setIsUserDataLoading] = useState(false);
+  const [user, setUser] = useState(null);
 
   const loadUserData = async () => {
     try {
       const storedtoken = await AsyncStorage.getItem("authtoken");
 
+      const user = await AsyncStorage.getItem("username");
+
       if (storedtoken) {
         setUserToken(JSON.parse(storedtoken));
+
+        setUser(JSON.parse(user));
 
         setIsLoggedIn(true);
       }
@@ -33,10 +39,14 @@ export const AuthProvider = ({ children }) => {
 
       setIsLoggedIn(true);
 
+      setUser(username);
+
       await AsyncStorage.setItem(
         "authtoken",
         JSON.stringify(response.data.token)
       );
+
+      await AsyncStorage.setItem("username", JSON.stringify(username));
     }
 
     return response;
@@ -68,6 +78,31 @@ export const AuthProvider = ({ children }) => {
     return response;
   };
 
+  const getUserDetails = async () => {
+    setIsUserDataLoading(true);
+    try {
+      const response = await Auth.getAllUsers();
+
+      const users = response.data;
+
+      const matchingUser = users.find((x) => x.username === user);
+
+      console.log(matchingUser);
+
+      if (matchingUser) {
+        return matchingUser;
+      } else {
+        console.log("User not found.");
+        return null;
+      }
+    } catch (error) {
+      console.error("Failed to fetch users:", error);
+      return null;
+    } finally {
+      setIsUserDataLoading(false);
+    }
+  };
+
   const signOut = async () => {
     setUserToken(null);
     setIsLoggedIn(false);
@@ -79,7 +114,17 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, signIn, signOut, createUser }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        isLoggedIn,
+        isUserDataLoading,
+        signIn,
+        signOut,
+        createUser,
+        getUserDetails,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

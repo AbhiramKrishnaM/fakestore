@@ -8,17 +8,30 @@ import {
 import React, { useContext, useEffect, useState } from "react";
 
 import { AuthContext } from "../../context/AuthContext";
-
 import { Logout } from "../../constants/IconSet";
 import { router } from "expo-router";
 
 const Profile = () => {
-  const { getUserDetails, signOut } = useContext(AuthContext);
+  const [userData, setUserData] = useState(null);
+  const { user, isUserDataLoading, getUserDetails, signOut } =
+    useContext(AuthContext);
 
   const logout = () => {
     signOut();
     router.push("/");
   };
+
+  // Fetch user data when component mounts
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const userDetails = await getUserDetails(); // Call getUserDetails to fetch user data
+      if (userDetails) {
+        setUserData(userDetails); // Set the state with fetched user details
+      }
+    };
+
+    fetchUserData();
+  }, []);
 
   return (
     <SafeAreaView className="h-full">
@@ -38,19 +51,60 @@ const Profile = () => {
           </View>
         </View>
 
-        <View className="justify-between items-start flex-row mb-2">
+        <View className="justify-between items-start flex-row ">
           <View>
             <Text className="font-pAmsterdam font-medium text-lg">
               Username
             </Text>
-            <Text className="font-pAmsterdam text-4xl">Abhiram</Text>
+            <Text className="font-pAmsterdam text-4xl">
+              {isUserDataLoading
+                ? "Loading..."
+                : userData?.username || "No user found"}
+            </Text>
           </View>
         </View>
 
-        <View className="justify-between items-start flex-row mb-2">
+        <View className="justify-between items-start flex-row">
           <View>
             <Text className="font-pAmsterdam font-medium text-lg">Email</Text>
-            <Text className="font-pAmsterdam text-4xl">abhiram@gmail.com</Text>
+            <Text className="font-pAmsterdam text-4xl">
+              {isUserDataLoading
+                ? "Loading..."
+                : userData?.email || "No email found"}
+            </Text>
+          </View>
+        </View>
+
+        <View className="justify-between items-start flex-row ">
+          <View>
+            <Text className="font-pAmsterdam font-medium text-lg">City</Text>
+            <Text className="font-pAmsterdam text-4xl">
+              {isUserDataLoading
+                ? "Loading..."
+                : userData?.address.city || "No city found"}
+            </Text>
+          </View>
+        </View>
+
+        <View className="justify-between items-start flex-row ">
+          <View>
+            <Text className="font-pAmsterdam font-medium text-lg">Street</Text>
+            <Text className="font-pAmsterdam text-4xl">
+              {isUserDataLoading
+                ? "Loading..."
+                : userData?.address.street || "No street found"}
+            </Text>
+          </View>
+        </View>
+
+        <View className="justify-between items-start flex-row ">
+          <View>
+            <Text className="font-pAmsterdam font-medium text-lg">Zipcode</Text>
+            <Text className="font-pAmsterdam text-4xl">
+              {isUserDataLoading
+                ? "Loading..."
+                : userData?.address.zipcode || "No zipcode found"}
+            </Text>
           </View>
         </View>
       </View>

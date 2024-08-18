@@ -12,10 +12,13 @@ import Trending from "../components/Trending";
 import EmptyState from "../components/EmptyState";
 
 import { ProductContext } from "../../context/ProductContext";
+import { AuthContext } from "../../context/AuthContext";
 import ProductCard from "../components/ProductCard";
 
 const Home = () => {
   const [refreshing, setRefreshing] = useState(false);
+
+  const { user } = useContext(AuthContext);
 
   const { products, trendingProducts, isLoading, fetchProducts } =
     useContext(ProductContext);
@@ -43,7 +46,7 @@ const Home = () => {
                 <Text className="font-pAmsterdam font-medium text-lg">
                   Welcome Back
                 </Text>
-                <Text className="font-pAmsterdam text-5xl">Abhiram</Text>
+                <Text className="font-pAmsterdam text-5xl">{user}</Text>
               </View>
             </View>
 

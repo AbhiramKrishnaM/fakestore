@@ -34,7 +34,13 @@ class Auth {
   }
 
   // logout
-  logout() {}
+  logout() {
+    return { status: 200 };
+  }
+
+  getAllUsers() {
+    return api.get("/users");
+  }
 }
 
 export default new Auth();
