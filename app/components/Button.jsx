@@ -15,6 +15,7 @@ const Button = ({
       }`}
       activeOpacity={0.7}
       disabled={isLoading}
+      onPress={handlePress}
     >
       <Text className={`${textStyles} text-white p-3`}>{title}</Text>
     </TouchableOpacity>
