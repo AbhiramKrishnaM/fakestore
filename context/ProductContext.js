@@ -25,6 +25,8 @@ export const ProductProvider = ({ children }) => {
     return cart.some((p) => p.id === productId);
   };
 
+  const cartItemCount = cart.length;
+
   const fetchProducts = async () => {
     setIsLoading(true);
     try {
@@ -51,6 +53,7 @@ export const ProductProvider = ({ children }) => {
         isLoading,
         trendingProducts,
         cart,
+        cartItemCount,
         fetchProducts,
         addToCart,
         removeFromCart,
