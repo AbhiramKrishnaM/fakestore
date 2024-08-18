@@ -42,17 +42,12 @@ export const AuthProvider = ({ children }) => {
     return response;
   };
 
-  const signOut = async () => {
-    setUserToken(null);
-    setIsLoggedIn(false);
-    await AsyncStorage.removeItem("authtoken");
-  };
-
-  const createUser = async () => {
-    await Auth.register({
-      email: "John@gmail.com",
-      username: "johnd",
-      password: "m38rmF$",
+  const createUser = async (username, email, password) => {
+    const response = await Auth.register({
+      email: email,
+      username: username,
+      password: password,
+      // random data
       name: {
         firstname: "John",
         lastname: "Doe",
@@ -69,6 +64,14 @@ export const AuthProvider = ({ children }) => {
       },
       phone: "1-570-236-7033",
     });
+
+    return response;
+  };
+
+  const signOut = async () => {
+    setUserToken(null);
+    setIsLoggedIn(false);
+    await AsyncStorage.removeItem("authtoken");
   };
 
   useEffect(() => {

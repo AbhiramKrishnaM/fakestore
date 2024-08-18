@@ -1,4 +1,4 @@
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, Alert } from "react-native";
 import React, { useState, useContext } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import FormField from "../components/FormField";
@@ -18,13 +18,24 @@ const SignIn = () => {
   const [submitting, setSubmitting] = useState(false);
 
   const submit = async () => {
+    const { username, password } = form;
+
+    // Validation: Check if username or password fields are empty
+    if (!username || !password) {
+      Alert.alert("Error", "Username and password are required.");
+      setSubmitting(false);
+      return;
+    }
+
     setSubmitting(true);
+
     try {
-      const response = await signIn(form.username, form.password);
+      const response = await signIn(username, password);
 
       router.push({ pathname: "/home" });
     } catch (error) {
       console.error("Failed to sign in:", error);
+      Alert.alert("Error", "Failed to sign in. Please check your credentials.");
     } finally {
       setSubmitting(false);
     }

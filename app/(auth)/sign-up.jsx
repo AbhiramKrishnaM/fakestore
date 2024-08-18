@@ -1,11 +1,16 @@
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, Alert } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import FormField from "../components/FormField";
 import Button from "../components/Button";
 import { Link } from "expo-router";
+import { useContext } from "react";
+
+import { AuthContext } from "../../context/AuthContext";
 
 const SignUp = () => {
+  const { createUser } = useContext(AuthContext);
+
   const [form, setForm] = useState({
     username: "",
     email: "",
@@ -14,8 +19,25 @@ const SignUp = () => {
 
   const [submitting, setSubmitting] = useState(false);
 
-  const submit = () => {
+  const submit = async () => {
+    const { username, email, password } = form;
+
+    // Validation: Check if any fields are empty
+    if (!username || !email || !password) {
+      Alert.alert("Error", "All fields are required.");
+      return;
+    }
+
     setSubmitting(true);
+
+    try {
+      const response = await createUser(username, email, password);
+      console.log(response.data, "this is response");
+    } catch (error) {
+      Alert.alert("Error", error.message);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
