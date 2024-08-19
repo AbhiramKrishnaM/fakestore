@@ -26,6 +26,15 @@ Fakestore is a sleek and simple React Native app built using [Expo](https://expo
     npx expo start
    ```
 
+   ## Setup Instructions
+
+1. Copy the `.env-example` file and rename it to `.env`.
+
+   ```bash
+   cp .env-example .env
+   ```
+
+
 You can then open the app in:
 
 - A [development build](https://docs.expo.dev/develop/development-builds/introduction/)
@@ -41,6 +50,18 @@ You can then open the app in:
 - **Cart Page**: Lists all products added to the cart, allowing the user to review and modify items.
 - **Checkout Page**: A summary of the cart contents with a button to proceed with the purchase.
 - **Bottom Navigation Bar**: Persistent navigation bar at the bottom of the app for easy access to Home, Cart, and other key sections.
+
+## Test User Credentials (Fakestore API)
+
+| Username    | Password      |
+|-------------|---------------|
+| johnd       | m38rmF$       |
+| mor_2314    | 83r5^_        |
+| kevinryan   | kev02937@     |
+| donero      | ewedon        |
+| derek       | jklg*_56      |
+
+
 
 ## Screens
 
