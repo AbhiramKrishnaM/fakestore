@@ -44,9 +44,19 @@ You can then open the app in:
 
 ## Screens
 
+![WhatsApp Image 2024-08-19 at 5 52 43 AM](https://github.com/user-attachments/assets/5167bf1d-5277-496a-a805-b8126209953a)
 
+![WhatsApp Image 2024-08-19 at 5 52 45 AM](https://github.com/user-attachments/assets/09f50870-ef05-43b9-8011-efa07ac50504)
 
+![WhatsApp Image 2024-08-19 at 5 52 44 AM(1)](https://github.com/user-attachments/assets/79d5b0be-8206-4e51-8593-6fc08318496b)
 
+![WhatsApp Image 2024-08-19 at 5 52 44 AM](https://github.com/user-attachments/assets/94eed292-a323-493c-83bc-c93cba0b474f)
+
+![WhatsApp Image 2024-08-19 at 5 52 45 AM(1)](https://github.com/user-attachments/assets/f3944f49-621c-49fc-abda-241c9c8d8339)
+
+![WhatsApp Image 2024-08-19 at 5 52 46 AM(1)](https://github.com/user-attachments/assets/835b2a6c-a08e-48f5-9d24-ff68501e0c10)
+
+![WhatsApp Image 2024-08-19 at 5 52 46 AM](https://github.com/user-attachments/assets/9bcb0a2b-6480-415c-8ca2-8a236066de4b)
 
 ## References
 
